@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Happy Birthday!</title>
+  <style>
+    body {
+      background: linear-gradient(135deg, #ffcad4 0%, #f3c4fb 50%, #b8c0ff 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      font-family: 'Comic Sans MS', cursive;
+      overflow: hidden;
+    }
+
+    .container {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .cake {
+      position: relative;
+      width: 250px;
+      height: 200px;
+      margin-top: 100px;
+      filter: drop-shadow(0 10px 15px rgba(0,0,0,0.2));
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+
+    .plate {
+      position: absolute;
+      width: 270px;
+      height: 25px;
+      background: #f1f1f1;
+      border-radius: 50%;
+      bottom: -12px;
+      left: -10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .layer {
+      width: 250px;
+      height: 60px;
+      background: #ff69b4;
+      border-radius: 10px;
+      position: absolute;
+      left: 0;
+      transition: transform 0.3s;
+    }
+
+    .layer:nth-child(1) {
+      top: 0;
+      background: linear-gradient(to right, #ff99c8, #ffc8dd);
+      border-top-left-radius: 25px;
+      border-top-right-radius: 25px;
+      z-index: 3;
+    }
+
+    .layer:nth-child(2) {
+      top: 60px;
+      background: linear-gradient(to right, #ff69b4, #ff99c8);
+      z-index: 2;
+    }
+
+    .layer:nth-child(3) {
+      top: 120px;
+      background: linear-gradient(to right, #ff3386, #ff69b4);
+      border-bottom-left-radius: 25px;
+      border-bottom-right-radius: 25px;
+      z-index: 1;
+    }
+
+    .icing {
+      position: absolute;
+      height: 15px;
+      width: 100%;
+      background: white;
+      border-radius: 10px;
+      z-index: 5;
+    }
+
+    .icing-top {
+      top: -5px;
+    }
+
+    .icing-middle {
+      top: 55px;
+    }
+
+    .icing-bottom {
+      top: 115px;
+    }
+
+    .drip {
+      position: absolute;
+      width: 15px;
+      height: 20px;
+      background: white;
+      top: 10px;
+      border-bottom-left-radius: 25px;
+      border-bottom-right-radius: 25px;
+      z-index: 4;
+    }
+
+    .candle {
+      position: absolute;
+      top: -35px;
+      left: 120px;
+      width: 10px;
+      height: 35px;
+      background: linear-gradient(to top, #fdfd96, #ffeb3b);
+      border-radius: 2px;
+      z-index: 10;
+    }
+
+    .flame {
+      position: absolute;
+      top: -15px;
+      left: -5px;
+      width: 20px;
+      height: 25px;
+      background: radial-gradient(ellipse at center, #ffdb57 0%, #ff9636 60%, #ff5824 100%);
+      border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+      transform-origin: center bottom;
+      animation: flicker 0.5s infinite alternate;
+      box-shadow: 0 0 10px #ff5824, 0 0 20px #ff9636, 0 0 30px rgba(255, 224, 102, 0.6);
+    }
+
+    .decoration {
+      position: absolute;
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      z-index: 6;
+    }
+
+    .cherry {
+      position: absolute;
+      width: 15px;
+      height: 15px;
+      background: #e63946;
+      border-radius: 50%;
+      top: -8px;
+      z-index: 6;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+
+    .cherry-stem {
+      position: absolute;
+      width: 2px;
+      height: 10px;
+      background: #2a9d8f;
+      top: -15px;
+      left: 7px;
+      transform: rotate(-15deg);
+      z-index: 5;
+    }
+
+    @keyframes flicker {
+      0% { transform: scale(1) rotate(-2deg); opacity: 0.9; }
+      25% { transform: scale(1.1) rotate(2deg); opacity: 1; }
+      50% { transform: scale(0.9) rotate(-1deg); opacity: 0.8; }
+      75% { transform: scale(1.2) rotate(1deg); opacity: 1; }
+      100% { transform: scale(1) rotate(0deg); opacity: 0.9; }
+    }
+
+    h1 {
+      font-size: 36px;
+      color: #d6336c;
+      text-shadow: 2px 2px 4px rgba(255,255,255,0.7);
+      margin-bottom: 20px;
+      animation: glow 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 5px #fff, 0 0 10px #ff99c8, 0 0 15px #ff69b4; }
+      to { text-shadow: 0 0 10px #fff, 0 0 20px #ff99c8, 0 0 30px #ff69b4; }
+    }
+
+    .timer {
+      font-size: 24px;
+      color: #5e548e;
+      background: rgba(255, 255, 255, 0.7);
+      padding: 10px 20px;
+      border-radius: 20px;
+      margin-top: 20px;
+      margin-bottom: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    
+    .music-button {
+      font-size: 18px;
+      padding: 10px 25px;
+      background: linear-gradient(to right, #ff69b4, #9370db);
+      color: white;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      margin-bottom: 20px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      transition: all 0.3s ease;
+      animation: pulse 2s infinite;
+    }
+    
+    .music-button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 7px 20px rgba(0,0,0,0.25);
+    }
+    
+    .music-button:active {
+      transform: scale(0.95);
+    }
+    
+    @keyframes pulse {
+      0% {
+        box-shadow: 0 0 0 0 rgba(255, 105, 180, 0.7);
+      }
+      70% {
+        box-shadow: 0 0 0 10px rgba(255, 105, 180, 0);
+      }
+      100% {
+        box-shadow: 0 0 0 0 rgba(255, 105, 180, 0);
+      }
+    }
+
+    .confetti {
+      position: absolute;
+      width: 15px;
+      height: 15px;
+      background-color: #f00;
+      opacity: 0;
+      z-index: -1;
+    }
+
+    .confetti-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: rgba(255, 105, 180, 0.7);
+      transform: rotate(45deg);
+      opacity: 0;
+      animation: float-up 4s ease-in-out forwards;
+    }
+
+    .heart:before,
+    .heart:after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: rgba(255, 105, 180, 0.7);
+      border-radius: 50%;
+    }
+
+    .heart:before {
+      top: -10px;
+      left: 0;
+    }
+
+    .heart:after {
+      top: 0;
+      left: -10px;
+    }
+
+    @keyframes float-up {
+      0% {
+        transform: rotate(45deg) translateY(0) scale(0);
+        opacity: 0;
+      }
+      20% {
+        opacity: 0.7;
+      }
+      100% {
+        transform: rotate(45deg) translateY(-100vh) scale(1);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Happy bday u lil shit! </h1>
+    <div class="timer">01:00</div>
+    <button id="play-music" class="music-button">🎵 Bas Bana</button>
+    <div class="cake">
+      <div class="plate"></div>
+      <div class="layer">
+        <div class="icing icing-top"></div>
+      </div>
+      <div class="layer">
+        <div class="icing icing-middle"></div>
+      </div>
+      <div class="layer">
+        <div class="icing icing-bottom"></div>
+      </div>
+      <div class="candle">
+        <div class="flame"></div>
+      </div>
+    </div>
+  </div>
+  
+  <audio id="birthday-song">
+    <source src="dogum-gunu-sarki.mp3" type="audio/mpeg">
+  </audio>
+
+  <div class="confetti-container" id="confetti-container"></div>
+
+  <script>
+    // Timer functionality
+    function startTimer(duration, display) {
+      let timer = duration, minutes, seconds;
+      const intervalId = setInterval(function () {
+        minutes = parseInt(timer / 60, 10);
+        seconds = parseInt(timer % 60, 10);
+
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        display.textContent = minutes + ":" + seconds;
+
+        if (--timer < 0) {
+          clearInterval(intervalId);
+          createConfetti();
+          showHearts();
+        }
+      }, 1000);
+    }
+
+    window.onload = function () {
+      const oneMinute = 60;
+      const display = document.querySelector('.timer');
+      startTimer(oneMinute, display);
+      
+      // Add decorations to cake
+      addDecorations();
+      
+      // Add drips to cake
+      addDrips();
+    };
+
+    function addDecorations() {
+      const layers = document.querySelectorAll('.layer');
+      
+      // Add cherries
+      for (let i = 0; i < 5; i++) {
+        const cherry = document.createElement('div');
+        cherry.className = 'cherry';
+        const stem = document.createElement('div');
+        stem.className = 'cherry-stem';
+        cherry.appendChild(stem);
+        
+        // Position randomly on top layer
+        cherry.style.left = (20 + i * 50) + 'px';
+        cherry.style.top = '-5px';
+        
+        layers[0].appendChild(cherry);
+      }
+      
+      // Add colorful decorations
+      const colors = ['#ff9bba', '#a0c4ff', '#9bf6ff', '#caffbf', '#fdffb6', '#ffc6ff'];
+      
+      layers.forEach((layer, layerIndex) => {
+        for (let i = 0; i < 10; i++) {
+          const decoration = document.createElement('div');
+          decoration.className = 'decoration';
+          
+          // Random position within the layer
+          const left = Math.floor(Math.random() * 220) + 15;
+          const top = Math.floor(Math.random() * 40) + 10;
+          
+          decoration.style.left = left + 'px';
+          decoration.style.top = top + 'px';
+          decoration.style.background = colors[Math.floor(Math.random() * colors.length)];
+          
+          layer.appendChild(decoration);
+        }
+      });
+    }
+
+    function addDrips() {
+      const layers = document.querySelectorAll('.layer');
+      
+      layers.forEach((layer, index) => {
+        const icing = layer.querySelector('.icing');
+        if (!icing) return;
+        
+        for (let i = 0; i < 8; i++) {
+          const drip = document.createElement('div');
+          drip.className = 'drip';
+          const left = 10 + i * 30 + Math.random() * 10;
+          drip.style.left = left + 'px';
+          
+          // Random height for the drip
+          const height = Math.floor(Math.random() * 15) + 10;
+          drip.style.height = height + 'px';
+          
+          icing.appendChild(drip);
+        }
+      });
+    }
+
+    function createConfetti() {
+      const container = document.getElementById('confetti-container');
+      const colors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff', '#00ffff', '#ff9bba', '#a0c4ff'];
+      const shapes = ['square', 'circle', 'triangle', 'line'];
+      const confettiCount = 200;
+      
+      for (let i = 0; i < confettiCount; i++) {
+        setTimeout(() => {
+          const confetti = document.createElement('div');
+          const color = colors[Math.floor(Math.random() * colors.length)];
+          const shape = shapes[Math.floor(Math.random() * shapes.length)];
+          const left = Math.random() * 100;
+          const size = Math.random() * 10 + 5;
+          
+          confetti.className = 'confetti';
+          confetti.style.backgroundColor = color;
+          confetti.style.left = left + 'vw';
+          confetti.style.width = size + 'px';
+          confetti.style.height = size + 'px';
+          
+          if (shape === 'circle') {
+            confetti.style.borderRadius = '50%';
+          } else if (shape === 'triangle') {
+            confetti.style.width = '0';
+            confetti.style.height = '0';
+            confetti.style.backgroundColor = 'transparent';
+            confetti.style.borderLeft = size/2 + 'px solid transparent';
+            confetti.style.borderRight = size/2 + 'px solid transparent';
+            confetti.style.borderBottom = size + 'px solid ' + color;
+          } else if (shape === 'line') {
+            confetti.style.height = size * 2 + 'px';
+            confetti.style.width = size / 4 + 'px';
+          }
+          
+          // Animation properties
+          const duration = Math.random() * 3 + 2;
+          const rotation = Math.random() * 360;
+          
+          confetti.style.animation = `fall ${duration}s linear forwards`;
+          confetti.style.transform = `rotate(${rotation}deg)`;
+          
+          // Set animation keyframes dynamically
+          const style = document.createElement('style');
+          style.innerHTML = `
+            @keyframes fall {
+              0% {
+                opacity: 1;
+                top: -20px;
+                transform: translateX(0) rotate(${rotation}deg);
+              }
+              30% {
+                opacity: 1;
+                transform: translateX(${Math.random() * 100 - 50}px) rotate(${rotation + Math.random() * 100}deg);
+              }
+              60% {
+                opacity: 0.8;
+                transform: translateX(${Math.random() * 200 - 100}px) rotate(${rotation + Math.random() * 200}deg);
+              }
+              100% {
+                opacity: 0;
+                top: 100vh;
+                transform: translateX(${Math.random() * 300 - 150}px) rotate(${rotation + Math.random() * 300}deg);
+              }
+            }
+          `;
+          
+          document.head.appendChild(style);
+          container.appendChild(confetti);
+          
+          // Remove confetti after animation ends
+          setTimeout(() => {
+            confetti.remove();
+            style.remove();
+          }, duration * 1000);
+          
+        }, Math.random() * 500);
+      }
+    }
+
+    function showHearts() {
+      const container = document.getElementById('confetti-container');
+      for (let i = 0; i < 30; i++) {
+        setTimeout(() => {
+          const heart = document.createElement('div');
+          heart.className = 'heart';
+          
+          const left = Math.random() * 100;
+          const size = Math.random() * 15 + 10;
+          const delay = Math.random() * 2;
+          
+          heart.style.left = left + 'vw';
+          heart.style.bottom = '0';
+          heart.style.width = size + 'px';
+          heart.style.height = size + 'px';
+          heart.style.animationDelay = delay + 's';
+          
+          container.appendChild(heart);
+          
+          // Remove heart after animation
+          setTimeout(() => {
+            heart.remove();
+          }, 4000 + delay * 1000);
+        }, Math.random() * 2000);
+      }
+    }
+    
+    // Music player functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      const musicButton = document.getElementById('play-music');
+      const birthdaySong = document.getElementById('birthday-song');
+      
+      // Set up music button
+      musicButton.addEventListener('click', function() {
+        if (birthdaySong.paused) {
+          birthdaySong.play();
+          musicButton.textContent = '🔊 Müzik Çalıyor';
+          musicButton.style.background = 'linear-gradient(to right, #3a86ff, #8338ec)';
+        } else {
+          birthdaySong.pause();
+          musicButton.textContent = '🎵 Bas Bana';
+          musicButton.style.background = 'linear-gradient(to right, #ff69b4, #9370db)';
+        }
+      });
+      
+      // When the song ends
+      birthdaySong.addEventListener('ended', function() {
+        musicButton.textContent = '🎵 Bas Bana';
+        musicButton.style.background = 'linear-gradient(to right, #ff69b4, #9370db)';
+      });
+    });
+  </script>
+</body>
+</html>
